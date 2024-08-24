@@ -1,0 +1,44 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@font-face {
+  font-family: "Press Start 2P Regular";
+  src: url("@/assets/fonts/press_start_2p_regular.eot");
+  src: url("@/assets//fonts/press_start_2p_regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("@/assets/fonts/press_start_2p_regular.woff2") format("woff2"),
+    url("@/assets/fonts/press_start_2p_regular.woff") format("woff"),
+    url("@/assets/press_start_2p_regular.ttf") format("truetype"),
+    url("@/assets/press_start_2p_regular.svg#press_start_2p_regular")
+      format("svg");
+}
+@layer tailwind-base, primevue, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+* {
+  transition: 0.4s;
+}
+.pixel-font {
+  font-family: "Press Start 2P Regular" !important;
+}
+.text-stroke-2 {
+  -webkit-text-stroke: 1px #8a3037;
+}
+.hidden {
+  display: none;
+}
+.flex {
+  display: flex;
+}
+/* .p-password-mask-icon {
+  font-size: 2rem !important;
+} */
+ 
