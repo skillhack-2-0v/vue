@@ -45,7 +45,7 @@ provide("_visible", _visible);
         id="overlay_menu"
         :model="items"
         :popup="true"
-        class="right-0 bg-dark-blue/50 text-black border-none rounded-none"
+        class="right-0 bg-dark-blue/50 text-red border-none rounded-none"
       />
       <Button
         class="pi pi-user bg-black/0 border-none"
@@ -53,24 +53,24 @@ provide("_visible", _visible);
         style="font-size: 1.5rem"
       ></Button>
     </div>
-    <div class="text-2xl space-x-10 font-body hidden lg:flex items-center">
-      <a href="" class="hover:text-red text-dark-grey pixel-font text-base"
+    <div class="text-2xl space-x-2 font-body hidden lg:flex items-center">
+      <a href="" class="hover:text-red hover:bg-red/0 hover:border-red border border-black p-4 bg-dark-grey text-black/80 pixel-font text-base"
         >О Нac</a
       >
       <RouterLink
-        class="hover:text-red text-dark-grey pixel-font text-base"
+        class="hover:text-red hover:bg-red/0 hover:border-red border border-black p-4 bg-dark-grey text-black/80 pixel-font text-base"
         to="/skills"
         >Навыки</RouterLink
       >
 
       <!-- <a href="" class="hover:text-orange">Навыки</a> -->
       <Button v-if="!loginStore.isLogged"
-        class="hover:text-red text-dark-grey pixel-font text-base"
+        class="hover:text-red hover:bg-red/0 hover:border-red border border-black p-4 bg-dark-grey text-black/80 pixel-font text-base"
         unstyled
         @click="_visible = true"
         >Регистрация и вход</Button
       >
-      <RouterLink v-if="loginStore.isLogged" class="pixel-font bg-dark-grey text-white text-base px-4 py-2 cursor-pointer hover:text-red border-2 border-dark-grey hover:bg-red/0 hover:border-red" to="profile">
+      <RouterLink v-if="loginStore.isLogged" class="pixel-font bg-dark-grey text-red text-base p-4 cursor-pointer hover:text-red border border-black hover:bg-red/0 hover:border-red" to="profile">
         {{ loginStore.username }}
       </RouterLink>
 

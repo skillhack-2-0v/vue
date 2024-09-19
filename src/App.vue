@@ -5,5 +5,5 @@ import HeaderVue from '@/components/header_components/HeaderVue.vue'
 
 <template>
   <HeaderVue />
-  <RouterView />
+  <RouterView class=""/>
 </template>

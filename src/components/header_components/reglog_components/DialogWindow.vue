@@ -15,7 +15,7 @@ const loginStore = useLoginStore();
 const _visible = inject("_visible");
 function LoginValidate(username, email, password, remember) {
   const email_pattern = /^[a-zA-Z]+@[a-zA-Z]+$/;
-  const valid = true;
+  let valid = true;
   if (username.length < 8) {
     valid = false;
   }
@@ -73,7 +73,7 @@ function RegisterValidate(username, email, password, repeated_password) {
       </TabList>
       <TabPanels class="bg-orange/0">
         <RegistrationTab @RegisterValidation="RegisterValidate" />
-        <LoginTab @LoginValidation="LoginValidate" @RegisterValidation="RedisterValidation"/>
+        <LoginTab @LoginValidation="LoginValidate"/>
       </TabPanels>
     </Tabs>
   </Dialog>

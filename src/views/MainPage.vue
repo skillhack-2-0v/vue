@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink } from "vue-router";
-
 </script>
 <template>
   <main
@@ -12,27 +11,33 @@ import { RouterLink } from "vue-router";
       >
     </div> -->
     <!-- <img src="@/assets/img/image.png" alt="" class=" md:w-1/2" style="opacity: 0.7;" /> -->
-    <div class=" space-y-20 bg-black/40 h-full">
-      <div class="main-img  h-full flex justify-between w-full items-center ">
+    <div class="w-full bg-black/65 space-y-20 h-full">
+      <div class="main-img h-full flex justify-between w-full items-center">
         <div
-        href=""
-        class="door ml-[15rem] text-4xl pixel-font text-black  h-3/5 flex items-center cursor-pointer"
-      > 
-        <RouterLink to="/skills" href="" class="shadow-2xl hover:scale-110 bg-red p-6 border-4 border-black"> К навыкам</RouterLink>
+          href=""
+          class="ml-[19rem] pixel-font text-black h-3/5 flex items-center cursor-pointer"
+        >
+          <RouterLink
+            to="/skills"
+            href=""
+            class="shadow-2xl hover:text-dark-grey hover:border-dark-grey text-2xl text-red p-4 border border-red"
+          >
+            К навыкам</RouterLink
+          >
+        </div>
+        <!-- <div class="pixel2"><p class="pixel-font p-4">К навыкам</p></div> -->
+        <div class="flex flex-col w-2/3 pr-[4rem]">
+          <span
+            class="text-5xl font-light pixel-font text-red text-right"
+          >
+            Кодируй, прокачивай героев, проходи подземелья
+          </span>
+          <span class="text-right text-grey text-xl"> Найдем все нужные тебе документации и курсы </span>
+        </div>
 
+        <!-- <img src="../assets/gif/knight.webp" class="w-[60rem] -z-1" alt=""> -->
       </div>
-      <!-- <div class="pixel2"><p class="pixel-font p-4">К навыкам</p></div> -->
-
-      <span class="text-8xl font-light pixel-font w-1/2  text-red/20 text-right">
-        Кодируй, прокачивай героев, проходи подземелья!
-      </span>
-      </div>
-      
-      
     </div>
   </main>
 </template>
-<style>
-
-
-</style>
+<style></style>

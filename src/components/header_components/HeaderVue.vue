@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <header
-    class="text-black  absolute flex justify-between h-20 items-center px-10 w-full"
+    class="text-black flex justify-between h-24 items-center px-10 w-full absolute "
   >
     <RouterLink
       to="/"
