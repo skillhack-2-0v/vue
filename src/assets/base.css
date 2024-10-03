@@ -30,7 +30,7 @@
   font-family: "Press Start 2P Regular" !important;
 }
 .text-stroke-2 {
-  -webkit-text-stroke: 1px #8a3037;
+  -webkit-text-stroke: .5px black;
 }
 .hidden {
   display: none;

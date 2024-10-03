@@ -11,7 +11,7 @@ import { RouterLink } from "vue-router";
       >
     </div> -->
     <!-- <img src="@/assets/img/image.png" alt="" class=" md:w-1/2" style="opacity: 0.7;" /> -->
-    <div class="w-full bg-black/65 space-y-20 h-full">
+    <div class="w-full bg-black/40 space-y-20 h-full">
       <div class="main-img h-full flex justify-between w-full items-center">
         <div
           href=""
@@ -32,7 +32,7 @@ import { RouterLink } from "vue-router";
           >
             Кодируй, прокачивай героев, проходи подземелья
           </span>
-          <span class="text-right text-grey text-xl"> Найдем все нужные тебе документации и курсы </span>
+          <span class="text-right text-grey text-stroke-2 text-xl"> Найдем все нужные тебе документации и курсы </span>
         </div>
 
         <!-- <img src="../assets/gif/knight.webp" class="w-[60rem] -z-1" alt=""> -->
