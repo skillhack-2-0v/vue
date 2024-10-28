@@ -13,41 +13,7 @@ import { ref, inject } from "vue";
 const loginStore = useLoginStore();
 
 const _visible = inject("_visible");
-function LoginValidate(username, email, password, remember) {
-  const email_pattern = /^[a-zA-Z]+@[a-zA-Z]+$/;
-  let valid = true;
-  if (username.length < 8) {
-    valid = false;
-  }
-  if (!email_pattern.test(email)) {
-    valid = false;
-  }
-  _visible.value = !valid;
-  if (valid) {
-    loginStore.username = username;
-    loginStore.email = email;
-    loginStore.isLogged = true;
-  }
-}
-function RegisterValidate(username, email, password, repeated_password) {
-  const email_pattern = /^[a-zA-Z]+@[a-zA-Z]+$/;
-  const valid = true;
-  if (username.length < 8) {
-    valid = false
-  }
-  if (!email_pattern.test(email)) {
-    valid = false
-  }
-  _visible.value = !valid;
-  if (password != repeated_password) {
-    valid = false
-  }
-  if (valid) {
-    loginStore.username = username;
-    loginStore.email = email;
-    loginStore.isLogged = true;
-  }
-}
+
 </script>
 <template>
   <Dialog
@@ -61,19 +27,19 @@ function RegisterValidate(username, email, password, repeated_password) {
       <TabList>
         <Tab
           value="0"
-          class="bg-dark-grey/70 text-sm md:text-xl w-full text-red pixel-font"
+          class="bg-dark-grey/70 !text-4xl md:text-2xl w-full text-stroke-2 text-red !font-body"
           >ВХОД</Tab
         >
         <Tab
           value="1"
-          class="bg-dark-grey/70 text-sm md:text-xl w-full text-red pixel-font"
+          class="bg-dark-grey/70 !text-4xl md:text-2xl w-full text-stroke-2 text-red !font-body"
         >
           РЕГИСТРАЦИЯ</Tab
         >
       </TabList>
       <TabPanels class="bg-orange/0">
-        <RegistrationTab @RegisterValidation="RegisterValidate" />
-        <LoginTab @LoginValidation="LoginValidate"/>
+        <RegistrationTab/>
+        <LoginTab />
       </TabPanels>
     </Tabs>
   </Dialog>

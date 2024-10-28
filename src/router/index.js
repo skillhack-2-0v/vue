@@ -17,8 +17,8 @@ const router = createRouter({
       component: SkillsPage
     },
     {
-      path: '/html',
-      name: 'html',
+      path: '/skills/:name_skill',
+  
       component: RoadMap
     },
     {

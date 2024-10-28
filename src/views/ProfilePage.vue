@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-screen bg-[url('../assets/img/home.jpg')] bg-cover bg-center overflow-scroll"
+    class="w-full h-screen bg-gradient-to-b from-red to-dark-grey bg-cover bg-center overflow-scroll"
   >
   <div class="w-full h-full pt-32 flex flex-col justify-around items-center gap-20 bg-black/80 overflow-scroll pb-20">
     <div
@@ -18,10 +18,10 @@
     </div>
     <div class="gap-x-20 gap-y-10 flex flex-wrap my-0 mx-auto w-11/12">
       <div
-        v-for="i in 8"
-        class="w-[45rem] bg-red/10 px-10 py-2 gap-10 items-center flex border-2 border-grey/20 hover:bg-black/30 hover:border-dark-grey cursor-pointer"
+        v-for="(item, index) in _lang"
+        class="w-[45rem] bg-dark-grey/80 shadow-2xl shadow-black px-10 py-2 gap-10 items-center flex border-4 border-black hover:shadow-grey/30 hover:bg-black/30 hover:border-dark-grey cursor-pointer"
       >
-        <span class="text-white">Python</span>
+        <span class="text-white">{{ item }}</span>
         <div
           class="w-full h-[1rem] bg-grey flex items-center border-4 border-grey"
         >
@@ -36,3 +36,12 @@
    
   </div>
 </template>
+<script setup>
+import {ref } from 'vue'
+const l = ref(
+  [
+    
+  ]
+)
+const _lang = ref(['python', 'html', 'java', 'c++', 'c#'])
+</script>
