@@ -12,11 +12,12 @@ const _done = ref(false);
 const route = useRoute(); // получаем объект route
 const skill_name = route.params.name_skill; // читаем параметр skill_name
 console.log(skill_name);
-const visibleRight = ref(false)
-const curr_topic = ref('');
+const visibleRight = ref(false);
+const curr_topic = ref("");
 
 // Объект с темами и курсами
-const topics = ref({
+// [x] нарушение нейминга topics -> _topics, ключи на русском
+const _topics = ref({
   "DOM дерево": {
     src: {
       Документация: "https://learn.javascript.ru/dom-nodes",
@@ -24,7 +25,7 @@ const topics = ref({
         "https://developer.mozilla.org/ru/docs/Web/API/Document_Object_Model",
     },
     courses: {
-      "Stepik": "https://stepik.org/course/18644/promo",
+      Stepik: "https://stepik.org/course/18644/promo",
     },
   },
   "DOM дерево2": {
@@ -34,7 +35,7 @@ const topics = ref({
         "https://developer.mozilla.org/ru/docs/Web/API/Document_Object_Model",
     },
     courses: {
-      "Stepik": "https://stepik.org/course/18644/promo",
+      Stepik: "https://stepik.org/course/18644/promo",
     },
   },
   "DOM дерево3": {
@@ -44,9 +45,9 @@ const topics = ref({
         "https://developer.mozilla.org/ru/docs/Web/API/Document_Object_Model",
     },
     courses: {
-      "Stepik": "https://stepik.org/course/18644/promo",
+      Stepik: "https://stepik.org/course/18644/promo",
     },
-  }
+  },
 });
 
 // Метод для открытия Drawer
@@ -68,7 +69,9 @@ const openDrawer = (topicName) => {
         class="h-full w-3/4 flex flex-col items-center justify-center space-y-10"
       >
         <span class="text-4xl text-white">{{ skill_name }}</span>
-        <div class="w-5/6 h-[2.5rem] bg-dark-grey shadow-md flex items-center p-[.3rem]">
+        <div
+          class="w-5/6 h-[2.5rem] bg-dark-grey shadow-md flex items-center p-[.3rem]"
+        >
           <span class="w-1/2 bg-red/80 h-[2rem]"></span>
           <span class="pixel-font absolute ml-6 text-sm">50%</span>
         </div>
@@ -76,7 +79,7 @@ const openDrawer = (topicName) => {
           class="w-5/6 border-2 border-red bg-black/40 px-20 flex space-x-4 overflow-scroll py-10"
         >
           <div
-            v-for="(topicName, index) in Object.keys(topics)"
+            v-for="(topicName, index) in Object.keys(_topics)"
             :key="index"
             class="w-[40rem] flex flex-col gap-y-10 items-center"
             @click="openDrawer(topicName)"
@@ -103,7 +106,7 @@ const openDrawer = (topicName) => {
           <div class="flex flex-col !font-body">
             <a
               class="text-white/80 text-xl border border-grey/20 p-[.7rem] shadow-lg hover:shadow-red/20"
-              v-for="(link, label) in topics[curr_topic]?.src"
+              v-for="(link, label) in _topics[curr_topic]?.src"
               :href="link"
               :key="label"
             >
@@ -117,7 +120,7 @@ const openDrawer = (topicName) => {
             <div class="flex flex-col font-body">
               <a
                 class="text-white/80 text-xl border border-grey/20 p-[.7rem] shadow-lg hover:shadow-red/20"
-                v-for="(link, label) in topics[curr_topic]?.courses"
+                v-for="(link, label) in _topics[curr_topic]?.courses"
                 :href="link"
                 :key="label"
               >

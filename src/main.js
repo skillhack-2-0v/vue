@@ -7,9 +7,9 @@ import App from "./App.vue";
 import router from "./router";
 import PrimeVue from "primevue/config";
 import Aura from "@primevue/themes/aura";
-import Ripple from 'primevue/ripple'; // Импорт директивы Ripple
-import 'primeicons/primeicons.css'
-
+import Ripple from "primevue/ripple"; // Импорт директивы Ripple
+import "primeicons/primeicons.css";
+// [ ] скачать piniaPersistedState и сделать сторы сохраняемыми в локалсторедже
 
 const app = createApp(App);
 
@@ -17,16 +17,16 @@ app.use(createPinia());
 app.use(router);
 app.use(PrimeVue, {
   theme: {
-      preset: Aura,
-      ripple: true,
-      options: {
-          cssLayer: {
-              name: 'primevue',
-              order: 'tailwind-base, primevue, tailwind-utilities'
-          }
-      }
-  }
+    preset: Aura,
+    ripple: true,
+    options: {
+      cssLayer: {
+        name: "primevue",
+        order: "tailwind-base, primevue, tailwind-utilities",
+      },
+    },
+  },
 });
-app.directive('ripple', Ripple);
+app.directive("ripple", Ripple);
 
 app.mount("#app");
