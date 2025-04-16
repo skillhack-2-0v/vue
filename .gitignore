@@ -2,6 +2,7 @@ dumpf.sh
 all_files_dump.txt
 
 .DS_Store
+
 node_modules
 /dist
 

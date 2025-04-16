@@ -17,7 +17,6 @@ const router = createRouter({
       component: SkillsPage,
     },
     {
-      // [x] чисто придирка, лучше skill-name или skillName уж тогда, опять же нарушение нейминга
       path: "/skills/:name_skill",
 
       component: RoadMap,
@@ -25,6 +24,18 @@ const router = createRouter({
     {
       path: "/profile",
       component: ProfilePage,
+    },
+    {
+      path: "/tasks/:language",
+      name: "tasks-list",
+      component: () => import("@/views/TasksListPage.vue"),
+      props: true,
+    },
+    {
+      path: "/tasks/task/:taskId",
+      name: "task-details",
+      component: () => import("@/views/TaskPage.vue"),
+      props: true,
     },
   ],
 });

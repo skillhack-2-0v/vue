@@ -1,3 +1,127 @@
-@import './base.css';
+@import "./base.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Poppins:wght@500;600;700;800&family=VT323&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Определяем шрифт Press Start 2P */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/src/assets/fonts/press_start_2p_regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --transition-standard: all 0.3s ease;
+}
+
+body {
+  @apply bg-bg-dark text-white font-body;
+}
+
+/* Modern button styles */
+.btn {
+  @apply py-3 px-6 rounded font-heading font-bold shadow-codedex transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-codedex-hover focus:outline-none;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-primary/90;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-white hover:bg-secondary/90;
+}
+
+.btn-success {
+  @apply bg-success text-bg-dark hover:bg-success/90;
+}
+
+.btn-warning {
+  @apply bg-warning text-bg-dark hover:bg-warning/90;
+}
+
+/* Card styles */
+.card {
+  @apply bg-bg-medium rounded-lg p-6 shadow-codedex transition-all duration-200 ease-in-out;
+}
+
+.card-hover {
+  @apply hover:-translate-y-2 hover:shadow-codedex-hover;
+}
+
+/* Custom progress bar */
+.progress-container {
+  @apply h-3 bg-gray rounded-full overflow-hidden;
+}
+
+.progress-bar {
+  @apply h-full rounded-full transition-all duration-500 ease-out;
+}
+
+/* Input styling */
+.form-input {
+  @apply bg-bg-light border border-gray text-white py-3 px-4 rounded focus:outline-none focus:ring-2 focus:ring-primary transition-all;
+}
+
+/* Skill card */
+.skill-card {
+  @apply bg-bg-medium border-2 border-primary/20 rounded-lg transition-all duration-200 ease-in-out hover:border-primary hover:shadow-codedex-hover transform hover:-translate-y-2;
+}
+
+/* Pixel font for game elements - Updated to use Press Start 2P */
+.pixel-font {
+  font-family: "Press Start 2P", "VT323", monospace;
+  letter-spacing: 1px;
+}
+
+/* Game character styling */
+.character {
+  @apply transition-all duration-300 ease-in-out transform hover:scale-110;
+}
+
+/* Custom section backgrounds */
+.gradient-bg {
+  @apply bg-gradient-to-b from-bg-dark via-bg-medium to-bg-light;
+}
+
+.header-nav-item {
+  @apply px-4 py-2 rounded-md text-white hover:bg-primary/20 transition-colors duration-200;
+}
+
+/* No text selection */
+.noselect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Dialog styling */
+.custom-dialog {
+  @apply bg-bg-medium rounded-lg border-2 border-primary/30;
+}
+
+/* Tab styling */
+.custom-tab {
+  @apply transition-colors duration-200 hover:text-primary;
+}
+
+.custom-tab-active {
+  @apply text-primary border-b-2 border-primary;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-medium;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/80;
+}

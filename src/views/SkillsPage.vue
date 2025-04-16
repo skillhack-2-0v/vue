@@ -1,92 +1,184 @@
 <script setup>
-import ProgressBar from "primevue/progressbar";
-import { ref, reactive } from "vue";
+import { ref, reactive, onBeforeMount } from "vue";
 import { RouterLink } from "vue-router";
-import kn3 from "../assets/gif/kn3.png";
 import knight from "../assets/gif/knight.webp";
-import axios from "axios";
-const kn4 = "https://tenor.com/ru/view/knight-pixel-art-game-art-gif-26545777";
-// [x] нейминг реактивных переменных skills -> _skills
-const _skills = ref({
-  1: {
-    skill_name: "html",
-    percent: 50,
-  },
-  2: {
-    skill_name: "python",
-    percent: 60,
-  },
-  3: {
-    skill_name: "с++",
-    percent: 90,
-  },
-});
-// const gif = ref([knight, kn3, kn4]);
 
-//  ЗАПРОС НА ПОЛУЧЕНИЕ НАВЫКОВ
-// async function getSkills() {
-//   axios({
-//     method: "get",
-//     url: "http://bit.ly/2mTM3nY",
-//   }).then(function (response) {
-//     _skills = response.data;
-//   });
-// }
-axios.get("", {}, { params: {}, headers: {} });
+// Демо-данные с иконками языков и описаниями
+const _all_skills = {
+  Python: {
+    skill_name: "Python",
+    description:
+      "Универсальный язык для веб-разработки, анализа данных, ИИ и автоматизации",
+    icon: "pi-code",
+    color: "primary",
+  },
+  JavaScript: {
+    skill_name: "JavaScript",
+    description:
+      "Язык веб-программирования для интерактивных сайтов и современных веб-приложений",
+    icon: "pi-desktop",
+    color: "warning",
+  },
+  "HTML/CSS": {
+    skill_name: "HTML/CSS",
+    description: "Основа веб-разработки для создания и стилизации веб-страниц",
+    icon: "pi-palette",
+    color: "secondary",
+  },
+  Java: {
+    skill_name: "Java",
+    description:
+      "Мощный платформонезависимый язык для корпоративных приложений",
+    icon: "pi-server",
+    color: "purple",
+  },
+  "C++": {
+    skill_name: "C++",
+    description:
+      "Высокопроизводительный язык для системного программирования, игр и приложений",
+    icon: "pi-bolt",
+    color: "teal",
+  },
+  "C#": {
+    skill_name: "C#",
+    description:
+      "Язык Microsoft для создания Windows-приложений, игр и веб-сервисов",
+    icon: "pi-play",
+    color: "success",
+  },
+};
+
+const _user_info = {
+  user_id: 1,
+  username: "кодгерой",
+  email: "hero@code.io",
+  password: "********",
+  skills: {
+    Python: {
+      skill_name: "Python",
+      percent: 65,
+    },
+    "HTML/CSS": {
+      skill_name: "HTML/CSS",
+      percent: 42,
+    },
+    JavaScript: {
+      skill_name: "JavaScript",
+      percent: 28,
+    },
+  },
+};
+
+// Получить уровень персонажа на основе прогресса навыка
+const getCharacterLevel = (skillName) => {
+  if (_user_info.skills[skillName]) {
+    return Math.floor(_user_info.skills[skillName].percent / 10);
+  }
+  return 0;
+};
 </script>
-<template>
-  <!-- <div class="w-full h-full z-10 bg-black/30"></div> -->
-  <div
-    class="flex-col items-center bg-black w-full h-screen py-32 overflow-hidden"
-  >
-    <!-- <p class="text-5xl text-grey text-center pixel-font w-full">Навыки</p> -->
-    <div class="w-full -mt-10 flex justify-between">
-      <div
-        class="w-full h-full flex justify-between items-center gap-x-10 px-10"
-      >
-        <!-- <div class="w-full h-full absolute top-20 -ml-10">
 
-        </div> -->
-        <img
-          src="../assets/gif/torch1.gif"
-          alt=""
-          class="w-[10rem] h-[25rem]"
-        />
-        <div
-          class="container w-5/6 my-0 mx-auto flex flex-wrap gap-6 pt-40 relative"
+<template>
+  <div class="min-h-screen gradient-bg pt-28 pb-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Page header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading font-bold mb-4">Навыки SkillHack</h1>
+        <p class="text-xl text-gray max-w-2xl mx-auto">
+          Выберите язык программирования, чтобы начать приключение. По мере
+          обучения ваш персонаж будет становиться сильнее.
+        </p>
+      </div>
+
+      <!-- Skills grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <RouterLink
+          v-for="(skill, skillName) in _all_skills"
+          :key="skillName"
+          :to="`/skills/${skillName}`"
+          class="skill-card overflow-hidden group"
         >
-          <!-- [x] в таких случаях лучше не делать из роутерлинка див большой или чот такое, а лучше просто к диву привязать функцию $router.push() -->
-          <RouterLink
-            v-for="elem in _skills"
-            :to="`/skills/${elem.skill_name}`"
-            class="w-72 h-80 border-[3px] bg-black border-red/60 bg-gradient-to-b from-black to-red/40 hover:border-red shadow-2xl cursor-pointer hover:scale-[1.18] hover:z-20 hover:shadow-dark-grey"
-          >
+          <!-- Progress bar based on user progress -->
+          <div class="h-2 w-full" :class="`bg-${skill.color}/20`">
             <div
-              class="w-full h-[3rem] border-b-2 border-red border-dashed shadow-md flex items-center p-2"
-            >
-              <span class="h-full w-1/2 border-2 border-yellow"></span>
-              <span class="pixel-font absolute ml-6 text-white"
-                >{{ elem.percent }}%</span
+              v-if="_user_info.skills[skillName]"
+              class="h-full transition-all duration-500"
+              :class="`bg-${skill.color}`"
+              :style="`width: ${_user_info.skills[skillName].percent}%`"
+            ></div>
+            <div v-else class="h-full w-0" :class="`bg-${skill.color}`"></div>
+          </div>
+
+          <div class="p-6">
+            <!-- Skill content -->
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h3 class="text-2xl font-heading font-bold mb-2">
+                  {{ skill.skill_name }}
+                </h3>
+                <p class="text-gray">{{ skill.description }}</p>
+              </div>
+
+              <!-- Skill icon -->
+              <div
+                class="rounded-full w-12 h-12 flex items-center justify-center"
+                :class="`bg-${skill.color}/20 text-${skill.color}`"
               >
-            </div>
-            <div class="flex flex-col items-center h-full px-10 space-y-2">
-              <span class="mt-10 text-2xl font-body pixel-font text-white">{{
-                elem.skill_name
-              }}</span>
-              <div class="w-full flex items-center justify-center">
-                <div class="w-full h-full bg-black relative"></div>
-                <img :src="knight" alt="" class="" />
+                <i class="pi" :class="skill.icon"></i>
               </div>
             </div>
-          </RouterLink>
-        </div>
-        <img
-          src="../assets/gif/torch1.gif"
-          alt=""
-          class="w-[10rem] h-[25rem]"
-        />
+
+            <!-- Character progress -->
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-pixel mb-1">
+                  <span
+                    v-if="_user_info.skills[skillName]"
+                    :class="`text-${skill.color}`"
+                  >
+                    {{ _user_info.skills[skillName].percent }}%
+                  </span>
+                  <span v-else class="text-gray">0%</span>
+                  <span class="text-gray"> Завершено</span>
+                </div>
+
+                <div
+                  v-if="_user_info.skills[skillName]"
+                  class="text-sm text-gray"
+                >
+                  Уровень персонажа: {{ getCharacterLevel(skillName) }}
+                </div>
+                <div v-else class="text-sm text-gray">Начните свой путь</div>
+              </div>
+
+              <div
+                class="relative w-16 h-16 overflow-hidden group-hover:scale-110 transition-transform duration-300"
+              >
+                <img
+                  :src="knight"
+                  alt="Персонаж"
+                  class="w-full h-full object-contain"
+                />
+
+                <!-- Level badge for existing skills -->
+                <div
+                  v-if="_user_info.skills[skillName]"
+                  class="absolute -top-1 -right-1 text-xs font-pixel rounded-full w-5 h-5 flex items-center justify-center"
+                  :class="`bg-${skill.color} text-white`"
+                >
+                  {{ getCharacterLevel(skillName) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </RouterLink>
+      </div>
+
+      <!-- Start your journey section -->
+      <div class="mt-16 text-center">
+        <p class="text-gray mb-6">Не нашли нужный язык на SkillHack?</p>
+        <button class="btn btn-secondary">Запросить новый навык</button>
       </div>
     </div>
   </div>
 </template>
-<style></style>

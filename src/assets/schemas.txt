@@ -1,0 +1,40 @@
+// all_skills get
+{
+    skill_id: {   
+        skill_name: "",
+        description: ""
+    },
+    skill_id: {   
+        skill_name: "",
+        description: ""
+    },
+    skill_id: {   
+        skill_name: "",
+        description: ""
+    },
+}
+
+// user get
+{
+    user_id: {
+        username: "",
+        email: "",
+        password: "",
+        skills: {
+            skill_id: {
+                skill_name: "sjdicj",
+                percent: 123,
+            }
+        }
+    }
+}
+// skill get
+[
+    {
+        topic_name: "",
+        topic_description: "",
+        src_documentstions: ["", "", ""],
+        src_courses: ["", "", ""],
+        done: False,
+    }
+]
